@@ -11,7 +11,7 @@ from .recommendations import recommend_for_crop
 # from django.http import JsonResponse
 
 # Replace with your OpenWeather API key
-OPEN_WEATHER_API_KEY = "367e70a4ec972811084c4048ff5ce7cc"
+
 
 
 

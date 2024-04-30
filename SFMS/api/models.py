@@ -19,7 +19,7 @@ class SensorData(models.Model):
     air_humditity = models.FloatField()
     air_temperature = models.FloatField()
     soil_temperature = models.FloatField()
-    flux = models.IntegerField()
+    flux = models.FloatField(null=True)
     rain_drop = models.FloatField()
     ph_value = models.FloatField()
     nitrogen = models.FloatField()
