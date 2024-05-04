@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from .recommendations import recommend_for_crop
 from .models import SensorData
 from .models import WeatherData
 
@@ -6,12 +7,21 @@ class SensorDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = SensorData
         fields = [
-                  'sensor_data_id',
-                  'ph_value',
-                  'soil_moisture', 
-                  'npk_value', 
-                  'soil_temperature', 
-                  'timestamp']
+                    'sensor_data_id',
+                    'air_humidity',
+                    'air_temperature',
+                    'soil_temperature',
+                    'flux',
+                    'rain_drop',
+                    'ph_value',
+                    'nitrogen',
+                    'phosphorus',
+                    'potassium', 
+                    'recommendations', 
+                    'timestamp'     ]
+    def get_recommendations(self, obj):
+        data = self.context.get('serializer_data')  # Access data from serializer context
+        return recommend_for_crop(data)
         
     # def create(self, data):
     #     return SensorData.objects.create(**data)
@@ -23,4 +33,6 @@ class WeatherDataSerializer(serializers.ModelSerializer):
                   'rainfall',
                   'temperature',
                   'humidity',
-                  'wind_speed']
+                  'wind_speed'
+                  'timestamp'
+                  ]
