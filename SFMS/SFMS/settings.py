@@ -28,6 +28,10 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '172.16.184.132',
     '80f2-41-86-184-11.ngrok-free.app',
+    'related-infinitely-redbird.ngrok-free.app',
+    'b2c5-197-186-2-104.ngrok-free.app',
+    '127.0.0.1', 
+    
 ]
 
 

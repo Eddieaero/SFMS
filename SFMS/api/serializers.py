@@ -19,9 +19,7 @@ class SensorDataSerializer(serializers.ModelSerializer):
                     'potassium', 
                     'recommendations', 
                     'timestamp'     ]
-    def get_recommendations(self, obj):
-        data = self.context.get('serializer_data')  # Access data from serializer context
-        return recommend_for_crop(data)
+  
         
     # def create(self, data):
     #     return SensorData.objects.create(**data)

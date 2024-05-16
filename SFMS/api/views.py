@@ -4,43 +4,28 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
 from .models import SensorData
+# from .serializers import SensorDataSerializer, WeatherDataSerializer
 from .serializers import SensorDataSerializer
 import requests  # For OpenWeather API calls
 from .models import WeatherData
 from .recommendations import recommend_for_crop
 # from django.http import JsonResponse
-
+import json
 # Replace with your OpenWeather API key
 
 
-
-
-
-
-
 class SensorDataView(APIView):
-    @api_view(['POST'])
     def post(self, request):
         # Receive data from GSM module
-        serializer = SensorDataSerializer(data=request.data)
+        data = request.data.copy()
+        recommendations = recommend_for_crop(data)
+        data['recommendations'] = json.dumps(recommendations)
+        serializer = SensorDataSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             data = serializer.data
-            recommendations = recommend_for_crop(data)
-            data['recommendations'] = recommendations
-            # serializer.save(recommendations=recommendations)
-            # return Response(serializer.data, status=status.HTTP_201_CREATED)
             return Response(data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    # def post(self, request):
-    #     serializer = SensorDataSerializer(data=request.data)
-    #     if serializer.is_valid():
-    #         serializer.save()
-    #         context = {'serializer_data': serializer.data}  # Pass data to context
-    #         return Response(serializer.data, context=context, status=status.HTTP_201_CREATED)
-    #     else:
-    #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 
 
@@ -60,9 +45,7 @@ class SensorDataView(APIView):
             sensor_data = SensorData.objects.all()
             serializer = SensorDataSerializer(sensor_data, many=True)
             return Response(serializer.data)
-            # return JsonResponse({
-            #     "Data": sensor_data
-            # })
+
 
 
 

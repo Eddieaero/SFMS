@@ -66,4 +66,5 @@ def recommend_for_crop(data):
     else:
         recommendations['air_humidity_rec'] = 'Air humidity is optimal for maize. Maintain current practices.'
 
+    # recommendations.save()
     return recommendations
