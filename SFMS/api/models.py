@@ -12,7 +12,7 @@ class SensorData(models.Model):
     nitrogen = models.FloatField()
     phosphorus = models.FloatField()
     potassium = models.FloatField()
-    recommendations = jsonfield.JSONField(blank=True)
+    recommendations = jsonfield.JSONField(blank=True, default=dict)
     timestamp = models.DateTimeField(auto_now_add=True)
 
 class WeatherData(models.Model):
