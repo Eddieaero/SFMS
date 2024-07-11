@@ -1,9 +1,4 @@
 
-
-
-
-
-
 def recommend_for_crop(data):
     recommendations = {}
 
@@ -16,30 +11,30 @@ def recommend_for_crop(data):
         recommendations['ph_value_rec'] = 'Soil pH is optimal for maize. Maintain current practices.'
 
 
-    nitrogen = float(data['nitrogen'])
-    phosphorus = float(data['phosphorus'])
-    potassium = float(data['potassium'])
-    # Assuming 1-20 scale for NPK values
-    if nitrogen < 10:
-        recommendations['nitrogen_rec'] = 'Soil has low nitrogen for maize. Consider using a nitrogen-rich fertilizer.'
-    elif nitrogen > 15:
-        recommendations['nitrogen_rec'] = 'Soil has high nitrogen for maize. Consider reducing nitrogen fertilizer.'
-    else:
-        recommendations['nitrogen_rec'] = 'Soil nitrogen level is optimal for maize. Maintain current practices.'
+    # nitrogen = float(data['nitrogen'])
+    # phosphorus = float(data['phosphorus'])
+    # potassium = float(data['potassium'])
+    # # Assuming 1-20 scale for NPK values
+    # if nitrogen < 10:
+    #     recommendations['nitrogen_rec'] = 'Soil has low nitrogen for maize. Consider using a nitrogen-rich fertilizer.'
+    # elif nitrogen > 15:
+    #     recommendations['nitrogen_rec'] = 'Soil has high nitrogen for maize. Consider reducing nitrogen fertilizer.'
+    # else:
+    #     recommendations['nitrogen_rec'] = 'Soil nitrogen level is optimal for maize. Maintain current practices.'
 
-    if phosphorus < 10:
-        recommendations['phosphorus_rec'] = 'Soil has low phosphorus for maize. Consider using a phosphorus-rich fertilizer.'
-    elif phosphorus > 15:
-        recommendations['phosphorus_rec'] = 'Soil has high phosphorus for maize. Consider reducing phosphorus fertilizer.'
-    else:
-        recommendations['phosphorus_rec'] = 'Soil phosphorus level is optimal for maize. Maintain current practices.'
+    # if phosphorus < 10:
+    #     recommendations['phosphorus_rec'] = 'Soil has low phosphorus for maize. Consider using a phosphorus-rich fertilizer.'
+    # elif phosphorus > 15:
+    #     recommendations['phosphorus_rec'] = 'Soil has high phosphorus for maize. Consider reducing phosphorus fertilizer.'
+    # else:
+    #     recommendations['phosphorus_rec'] = 'Soil phosphorus level is optimal for maize. Maintain current practices.'
 
-    if potassium < 10:
-        recommendations['potassium_rec'] = 'Soil has low potassium for maize. Consider using a potassium-rich fertilizer.'
-    elif potassium > 15:
-        recommendations['potassium_rec'] = 'Soil has high potassium for maize. Consider reducing potassium fertilizer.'
-    else:
-        recommendations['potassium_rec'] = 'Soil potassium level is optimal for maize. Maintain current practices.'
+    # if potassium < 10:
+    #     recommendations['potassium_rec'] = 'Soil has low potassium for maize. Consider using a potassium-rich fertilizer.'
+    # elif potassium > 15:
+    #     recommendations['potassium_rec'] = 'Soil has high potassium for maize. Consider reducing potassium fertilizer.'
+    # else:
+    #     recommendations['potassium_rec'] = 'Soil potassium level is optimal for maize. Maintain current practices.'
 
     soil_temperature = float(data['soil_temperature'])
     if soil_temperature < 10:

@@ -3,11 +3,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
-from .models import SensorData
-# from .serializers import SensorDataSerializer, WeatherDataSerializer
+from .models import *
 from .serializers import SensorDataSerializer
-import requests  # For OpenWeather API calls
-from .models import WeatherData
+import requests  
 from .recommendations import recommend_for_crop
 # from django.http import JsonResponse
 import json
@@ -27,10 +25,6 @@ class SensorDataView(APIView):
             return Response(data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
-
-
-    # @api_view(['GET'])
     def get(self, request, pk=None):
         if pk:
             # Get specific sensor data by ID
@@ -46,19 +40,13 @@ class SensorDataView(APIView):
             serializer = SensorDataSerializer(sensor_data, many=True)
             return Response(serializer.data)
 
-
-
-
-
 class WeatherDataView(APIView):
     def get(self, request):
         # Get weather data from OpenWeather API
         lat = request.GET.get('latitude')  # Get latitude from query parameter
         lon = request.GET.get('longitude')  # Get longitude from query parameter
-
         if not lat or not lon:
             return Response({'error': 'Missing latitude or longitude parameters'}, status=status.HTTP_400_BAD_REQUEST)
-
         url = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={OPEN_WEATHER_API_KEY}"
         response = requests.get(url)
 

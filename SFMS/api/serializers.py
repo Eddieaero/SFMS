@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from .recommendations import recommend_for_crop
-from .models import SensorData
-from .models import WeatherData
+from .models import *
 
 class SensorDataSerializer(serializers.ModelSerializer):
     class Meta:
